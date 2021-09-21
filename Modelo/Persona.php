@@ -21,7 +21,7 @@ class Persona{
     }
 
     public function setear($nrodni, $apellido, $nombre, $fechaNac, $telefono, $domicilio){
-        $this->setNrodni($nrodni);
+        $this->setNroDni($nrodni);
         $this->setApellido($apellido);
         $this->setNombre($nombre);
         $this->setFechaNac($fechaNac);
@@ -29,10 +29,10 @@ class Persona{
         $this->setDomicilio($domicilio);
     }
 
-    public function getNrodni(){
+    public function getNroDni(){
         return $this->nrodni;
     }
-    public function setNrodni($nrodni){
+    public function setNroDni($nrodni){
         $this->nrodni = $nrodni;
     }
     public function getApellido(){
@@ -96,10 +96,10 @@ class Persona{
     public function insertar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="INSERT INTO persona(apellido, nombre, fechaNac, telefono, domicilio) VALUES('".$this->getApellido()."', '".$this->getNombre()."', '".$this->getFechaNac()."', '".$this->getTelefono()."', '".$this->getDomicilio().");";
+        $sql="INSERT INTO persona(nroDni, apellido, nombre, fechaNac, telefono, domicilio) VALUES('".$this->getNroDni()."', '".$this->getApellido()."', '".$this->getNombre()."', '".$this->getFechaNac()."', '".$this->getTelefono()."', '".$this->getDomicilio()."');";
         if ($base->Iniciar()) {
-            if ($elid = $base->Ejecutar($sql)) {
-                $this->setNrodni($elid);
+            if ($base->Ejecutar($sql)) {
+                //$this->setNrodni($elid);
                 $resp = true;
             } else {
                 $this->setOp("persona->insertar: ".$base->getError());

@@ -33,7 +33,7 @@ $personas = $objAbmPersona->buscar(null);
                                             <td>'.$obj['domicilio'].'</td>
                                         </tr>';
                                 }
-                                echo '<tr><td colspan="6">Click en el DNI para ver los autos de la persona.</td></tr>';
+                                echo '<tr><td colspan="6">Click en el DNI para ver los autos pertenecientes a la persona.</td></tr>';
                             }else{
                                 echo '<tr>
                                         <th colspan="6">No se ha encontrado ninguna persona cargada.</th>

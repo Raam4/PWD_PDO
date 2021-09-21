@@ -30,7 +30,6 @@ class AbmPersona{
 
     public function alta($param){
         $resp = false;
-        $param['nroDni'] = null;
         $elObjtPersona = $this->cargarObjeto($param);
         if ($elObjtPersona!=null and $elObjtPersona->insertar()){
             $resp = true;
