@@ -24,10 +24,10 @@ $data = data_submitted();
                             $arrAuto = $objAbmAuto->buscar($data);
                             if(count($arrAuto)>0){
                                 echo '<tr>
-                                    <th scope="row">'.$arrAuto[0]->getPatente().'</th>
-                                    <td>'.$arrAuto[0]->getMarca().'</td>
-                                    <td>'.$arrAuto[0]->getModelo().'</td>
-                                    <td>'.$arrAuto[0]->getDniDuenio().'</td>
+                                    <th scope="row">'.$arrAuto[0]['patente'].'</th>
+                                    <td>'.$arrAuto[0]['marca'].'</td>
+                                    <td>'.$arrAuto[0]['modelo'].'</td>
+                                    <td>'.$arrAuto[0]['dniDuenio'].'</td>
                                 </tr>';
                             }else{
                                 echo '<tr>
