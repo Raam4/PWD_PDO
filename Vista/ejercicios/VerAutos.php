@@ -12,7 +12,7 @@ $autos = $objAbmAuto->buscar(null);
         <?php
         if(count($autos)!=0){
             foreach($autos as $obj){
-                $param = ['NroDni' => $obj['dniDuenio']];
+                $param = ['nroDni' => $obj['dniDuenio']];
                 $duenio = $objAbmPersona->buscar($param);
                 echo '<div class="col-sm-4">
                         <div class="card border rounded shadow fw-bold px-2 pt-1 mb-2">
