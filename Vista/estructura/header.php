@@ -70,7 +70,7 @@
                   <li class="nav-item has-submenu">
                     <a class="nav-link" href="#">Ejercicios<i class="fas fa-caret-down"></i> </a>
                     <ul class="submenu collapse">
-                      <li><a class="nav-link" href="../ejercicios/VerAutos.php">Ejercicio 3 (Ver Autos)</a></li>
+                      <li><a class="nav-link" href="../ejercicios/verAutos.php">Ejercicio 3 (Ver Autos)</a></li>
                       <li><a class="nav-link" href="../ejercicios/buscarAuto.php">Ejercicio 4 </a></li>
                       <li><a class="nav-link" href="#">Ejercicio 5 </a></li>
                       <li><a class="nav-link" href="#">Ejercicio 6 </a></li>
