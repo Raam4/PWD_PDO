@@ -1,5 +1,5 @@
 <?php 
-$Titulo = "Ejercicio 4";
+$Titulo = "Ejercicio 5";
 include_once("../../vista/estructura/header.php");
 include_once("../../Control/AbmAuto.php");
 include_once("../../Control/AbmPersona.php");
