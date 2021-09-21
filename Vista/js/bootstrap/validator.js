@@ -112,7 +112,7 @@ $('#datapers').bootstrapValidator({
                     message: 'El teléfono es muy largo'
                 },
                 regexp: {
-                    regexp: /^[0-9/-]+$/,
+                    regexp: /^[0-9-]+$/,
                     message: 'Ej. 123-4567890'
                 }
             }
