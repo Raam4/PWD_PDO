@@ -5,32 +5,32 @@ class AbmAuto{
 
     private function cargarObjeto($param){
         $obj = null;
-        if(array_key_exists('Patente',$param) and array_key_exists('Marca',$param) and array_key_exists('Modelo',$param) and array_key_exists('DniDuenio',$param)){
+        if(array_key_exists('patente',$param) and array_key_exists('marca',$param) and array_key_exists('modelo',$param) and array_key_exists('dniDuenio',$param)){
             $obj = new Auto();
-            $obj->setear($param['Patente'], $param['Marca'], $param['Modelo'], $param['DniDuenio']);
+            $obj->setear($param['patente'], $param['marca'], $param['modelo'], $param['dniDuenio']);
         }
         return $obj;
     }
     
     private function cargarObjetoConClave($param){
         $obj = null;
-        if( isset($param['Patente']) ){
+        if( isset($param['patente']) ){
             $obj = new Auto();
-            $obj->setear($param['Patente'], null, null, null);
+            $obj->setear($param['patente'], null, null, null);
         }
         return $obj;
     }
     
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['Patente']))
+        if (isset($param['patente']))
             $resp = true;
         return $resp;
     }
 
     public function alta($param){
         $resp = false;
-        $param['Patente'] = null;
+        $param['patente'] = null;
         $elObjtAuto = $this->cargarObjeto($param);
         if ($elObjtAuto!=null and $elObjtAuto->insertar()){
             $resp = true;
@@ -64,16 +64,30 @@ class AbmAuto{
         $where = " true ";
         if ($param<>NULL){
             if  (isset($param['patente']))
-                $where.=" and Patente ='".$param['patente']."'";
+                $where.=" and patente ='".$param['patente']."'";
             if  (isset($param['marca']))
-                 $where.=" and Marca ='".$param['marca']."'";
+                 $where.=" and marca ='".$param['marca']."'";
             if  (isset($param['modelo']))
-                $where.=" and Modelo ='".$param['modelo']."'";
+                $where.=" and modelo ='".$param['modelo']."'";
             if  (isset($param['dniDuenio']))
-                $where.=" and DniDuenio ='".$param['dniDuenio']."'";
+                $where.=" and dniDuenio ='".$param['dniDuenio']."'";
         }
         $arreglo = Auto::listar($where);
+        $arreglo = $this->objToArr($arreglo);
         return $arreglo;
     }
     
+    public function objToArr($arrOfObj){
+        $result = array();
+        foreach($arrOfObj as $obj){
+            $arr = [
+                'patente' => $obj->getPatente(),
+                'marca' => $obj->getMarca(),
+                'modelo' => $obj->getModelo(),
+                'dniDuenio' => $obj->getDniDuenio()
+            ];
+            array_push($result, $arr);
+        }
+        return $result;
+    }
 }

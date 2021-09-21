@@ -5,32 +5,32 @@ class AbmPersona{
 
     private function cargarObjeto($param){
         $obj = null;
-        if(array_key_exists('NroDni',$param) and array_key_exists('Apellido',$param) and array_key_exists('Nombre',$param) and array_key_exists('FechaNac',$param) and array_key_exists('Telefono',$param) and array_key_exists('Domicilio',$param)){
+        if(array_key_exists('nroDni',$param) and array_key_exists('apellido',$param) and array_key_exists('nombre',$param) and array_key_exists('fechaNac',$param) and array_key_exists('telefono',$param) and array_key_exists('domicilio',$param)){
             $obj = new Persona();
-            $obj->setear($param['NroDni'], $param['Apellido'], $param['Nombre'], $param['FechaNac'], $param['Telefono'], $param['Domicilio']);
+            $obj->setear($param['nroDni'], $param['apellido'], $param['nombre'], $param['fechaNac'], $param['telefono'], $param['domicilio']);
         }
         return $obj;
     }
     
     private function cargarObjetoConClave($param){
         $obj = null;
-        if( isset($param['NroDni']) ){
+        if( isset($param['nroDni']) ){
             $obj = new Persona();
-            $obj->setear($param['NroDni'], null, null, null, null, null);
+            $obj->setear($param['nroDni'], null, null, null, null, null);
         }
         return $obj;
     }
     
     private function seteadosCamposClaves($param){
         $resp = false;
-        if (isset($param['NroDni']))
+        if (isset($param['nroDni']))
             $resp = true;
         return $resp;
     }
 
     public function alta($param){
         $resp = false;
-        $param['NroDni'] = null;
+        $param['nroDni'] = null;
         $elObjtPersona = $this->cargarObjeto($param);
         if ($elObjtPersona!=null and $elObjtPersona->insertar()){
             $resp = true;
@@ -63,18 +63,18 @@ class AbmPersona{
     public function buscar($param){
         $where = " true ";
         if ($param<>NULL){
-            if  (isset($param['NroDni']))
-                $where.=" and NroDni =".$param['NroDni'];
-            if  (isset($param['Apellido']))
-                 $where.=" and Apellido ='".$param['Apellido']."'";
-            if  (isset($param['Nombre']))
-                $where.=" and Nombre ='".$param['Nombre']."'";
-            if  (isset($param['FechaNac']))
-                $where.=" and FechaNac ='".$param['FechaNac']."'";
-            if  (isset($param['Telefono']))
-                $where.=" and Telefono ='".$param['Telefono']."'";
-            if  (isset($param['Domicilio']))
-                $where.=" and Domicilio ='".$param['Domicilio']."'";
+            if  (isset($param['nroDni']))
+                $where.=" and nroDni =".$param['nroDni'];
+            if  (isset($param['apellido']))
+                 $where.=" and apellido ='".$param['apellido']."'";
+            if  (isset($param['nombre']))
+                $where.=" and nombre ='".$param['nombre']."'";
+            if  (isset($param['fechaNac']))
+                $where.=" and fechaNac ='".$param['fechaNac']."'";
+            if  (isset($param['telefono']))
+                $where.=" and telefono ='".$param['telefono']."'";
+            if  (isset($param['domicilio']))
+                $where.=" and domicilio ='".$param['domicilio']."'";
         }
         $arreglo = Persona::listar($where);  
         return $arreglo;

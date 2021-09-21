@@ -76,13 +76,13 @@ class Persona{
     public function cargar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="SELECT * FROM persona WHERE NroDni = ".$this->getNrodni();
+        $sql="SELECT * FROM persona WHERE nroDni = ".$this->getNrodni();
         if ($base->Iniciar()) {
             $res = $base->Ejecutar($sql);
             if($res>-1){
                 if($res>0){
                     $row = $base->Registro();
-                    $this->setear($row['NroDni'], $row['Apellido'], $row['Nombre'], $row['FechaNac'], $row['Telefono'], $row['Domicilio']);
+                    $this->setear($row['nroDni'], $row['apellido'], $row['nombre'], $row['fechaNac'], $row['telefono'], $row['domicilio']);
                 }
             }
         } else {
@@ -96,7 +96,7 @@ class Persona{
     public function insertar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="INSERT INTO persona(Apellido, Nombre, FechaNac, Telefono, Domicilio) VALUES('".$this->getApellido()."', '".$this->getNombre()."', '".$this->getFechaNac()."', '".$this->getTelefono()."', '".$this->getDomicilio().");";
+        $sql="INSERT INTO persona(apellido, nombre, fechaNac, telefono, domicilio) VALUES('".$this->getApellido()."', '".$this->getNombre()."', '".$this->getFechaNac()."', '".$this->getTelefono()."', '".$this->getDomicilio().");";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setNrodni($elid);
@@ -113,7 +113,7 @@ class Persona{
     public function modificar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="UPDATE persona SET Apellido='".$this->getApellido()."', Nombre='".$this->getNombre()."', FechaNac='".$this->getFechaNac()."', Telefono='".$this->getTelefono()."', Domicilio='".$this->getDomicilio()."' WHERE NroDni=".$this->getNrodni();
+        $sql="UPDATE persona SET apellido='".$this->getApellido()."', nombre='".$this->getNombre()."', fechaNac='".$this->getFechaNac()."', telefono='".$this->getTelefono()."', domicilio='".$this->getDomicilio()."' WHERE nroDni=".$this->getNrodni();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -129,7 +129,7 @@ class Persona{
     public function eliminar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="DELETE FROM persona WHERE NroDni=".$this->getNrodni();
+        $sql="DELETE FROM persona WHERE nroDni=".$this->getNrodni();
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 return true;
@@ -155,7 +155,7 @@ class Persona{
                 
                 while ($row = $base->Registro()){
                     $obj= new persona();
-                    $obj->setear($row['NroDni'], $row['Apellido'], $row['Nombre'], $row['fechaNac'], $row['Telefono'], $row['Domicilio']);
+                    $obj->setear($row['nroDni'], $row['apellido'], $row['nombre'], $row['fechaNac'], $row['telefono'], $row['domicilio']);
                     array_push($arreglo, $obj);
                 }
                
