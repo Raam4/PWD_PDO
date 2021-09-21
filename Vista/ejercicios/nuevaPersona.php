@@ -35,7 +35,7 @@ include_once("../../vista/estructura/header.php");
                     <div class="row pe-2 mt-3">
                         <div class="col-md-5">
                             <div class="form-group">
-                                <input class="form-control" type="number" id="telefono" name="telefono" placeholder="Telefono" required>
+                                <input class="form-control" type="text" id="telefono" name="telefono" placeholder="Telefono (sin 0 ni 15)" required>
                             </div>
                         </div>
                         <div class="col-md-7">
