@@ -12,17 +12,17 @@ $autos = $objAbmAuto->buscar(null);
         <?php
         if(count($autos)!=0){
             foreach($autos as $obj){
-                $param = ['NroDni' => $obj->getDniDuenio()];
+                $param = ['NroDni' => $obj['dniDuenio']];
                 $duenio = $objAbmPersona->buscar($param);
                 echo '<div class="col-sm-4">
                         <div class="card border rounded shadow fw-bold px-2 pt-1 mb-2">
-                            <p>Patente: '.$obj->getPatente().'</p>
-                            <p>Marca: '.$obj->getMarca().'</p>
-                            <p>Modelo: '.$obj->getModelo().'</p>
+                            <p>Patente: '.$obj['patente'].'</p>
+                            <p>Marca: '.$obj['marca'].'</p>
+                            <p>Modelo: '.$obj['modelo'].'</p>
                             <p>Dueño:</p>
-                            <p>DNI: '.$obj->getDniDuenio().'</p>
-                            <p>Nombre: '.$duenio[0]->getNombre().'</p>
-                            <p>Apellido: '.$duenio[0]->getApellido().'</p>
+                            <p>DNI: '.$obj['dniDuenio'].'</p>
+                            <p>Nombre: '.$duenio[0]['nombre'].'</p>
+                            <p>Apellido: '.$duenio[0]['apellido'].'</p>
                         </div>
                     </div>';
             }

@@ -76,9 +76,25 @@ class AbmPersona{
             if  (isset($param['domicilio']))
                 $where.=" and domicilio ='".$param['domicilio']."'";
         }
-        $arreglo = Persona::listar($where);  
+        $arreglo = Persona::listar($where);
+        $arreglo = $this->objToArr($arreglo);
         return $arreglo;
     }
-    
+
+    public function objToArr($arrOfObj){
+        $result = array();
+        foreach($arrOfObj as $obj){
+            $arr = [
+                'nroDni' => $obj->getNroDni(),
+                'apellido' => $obj->getApellido(),
+                'nombre' => $obj->getNombre(),
+                'fechaNac' => $obj->getFechaNac(),
+                'telefono' => $obj->getTelefono(),
+                'domicilio' => $obj->getDomicilio()
+            ];
+            array_push($result, $arr);
+        }
+        return $result;
+    }
 }
 ?>
