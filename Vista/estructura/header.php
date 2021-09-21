@@ -72,7 +72,7 @@
                     <ul class="submenu collapse">
                       <li><a class="nav-link" href="../ejercicios/verAutos.php">Ejercicio 3 (Ver Autos)</a></li>
                       <li><a class="nav-link" href="../ejercicios/buscarAuto.php">Ejercicio 4 </a></li>
-                      <li><a class="nav-link" href="#">Ejercicio 5 </a></li>
+                      <li><a class="nav-link" href="../ejercicios/listaPersonas.php">Ejercicio 5 </a></li>
                       <li><a class="nav-link" href="#">Ejercicio 6 </a></li>
                       <li><a class="nav-link" href="#">Ejercicio 7 </a></li>
                     </ul>
