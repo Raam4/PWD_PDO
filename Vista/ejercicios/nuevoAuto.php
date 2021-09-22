@@ -32,16 +32,14 @@ include_once("../../vista/estructura/header.php");
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
-            <div class="card border rounded shadow fw-bold pt-1">
-                <form class="ms-2 mb-3 needs-validation" id="datacar" name="datacar" method="POST" action="" novalidate>
-                    <p>Ingrese los datos del nuevo auto a cargar:</p>
+            <div class="card border rounded shadow pt-1">
+                <form class="ms-2 mb-3 needs-validation" id="datacar" name="datacar" method="POST" action="accionNuevoAuto.php" novalidate>
+                    <p class="fw-bold">Ingrese los datos del nuevo auto a cargar:</p>
+                    <p>Debe verificar si el DNI de la persona está cargado, caso contrario debe cargarlo.</p>
                     <div class="row pe-2 mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <input class="form-control" type="text" id="dniDuenio" name="dniDuenio" placeholder="DNI del dueño" required>
-                                <div class="invalid-feedback">
-                                    Please choose a username.
-                                </div>
                             </div>
                         </div>
                         <div class="col-md-2 pt-1">
@@ -58,19 +56,25 @@ include_once("../../vista/estructura/header.php");
                     <div class="row pe-2 mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" type="text" id="patente" name="patente" placeholder="Patente" required>
+                                <input class="form-control" type="text" id="patente" name="patente" pattern="^([A-Z]{3} [0-9]{3})$" placeholder="Patente" required>
+                                <div class="invalid-feedback">
+                                    Ej. "ABC 123"
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" type="text" id="marca" name="marca" placeholder="Marca" required>
+                                <input class="form-control" type="text" id="marca" name="marca" pattern="^([a-zA-Z ]{0,50})$" placeholder="Marca" required>
                             </div>
                         </div>
                     </div>
                     <div class="row pe-2 mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" type="text" id="modelo" name="modelo" placeholder="Modelo" required>
+                                <input class="form-control" type="number" min="1980" max="2021" id="modelo" name="modelo" placeholder="Modelo" required>
+                                <div class="invalid-feedback">
+                                    Desde 1980 a 2021.
+                                </div>
                             </div>
                         </div>
                     </div>

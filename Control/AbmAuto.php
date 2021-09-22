@@ -30,7 +30,6 @@ class AbmAuto{
 
     public function alta($param){
         $resp = false;
-        $param['patente'] = null;
         $elObjtAuto = $this->cargarObjeto($param);
         if ($elObjtAuto!=null and $elObjtAuto->insertar()){
             $resp = true;

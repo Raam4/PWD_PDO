@@ -71,10 +71,12 @@
                     <a class="nav-link" href="#">Ejercicios<i class="fas fa-caret-down"></i> </a>
                     <ul class="submenu collapse">
                       <li><a class="nav-link" href="../ejercicios/verAutos.php">Ejercicio 3 (Ver Autos)</a></li>
-                      <li><a class="nav-link" href="../ejercicios/buscarAuto.php">Ejercicio 4 </a></li>
-                      <li><a class="nav-link" href="../ejercicios/listaPersonas.php">Ejercicio 5 </a></li>
-                      <li><a class="nav-link" href="#">Ejercicio 6 </a></li>
-                      <li><a class="nav-link" href="#">Ejercicio 7 </a></li>
+                      <li><a class="nav-link" href="../ejercicios/buscarAuto.php">Ejercicio 4 (Buscar Auto)</a></li>
+                      <li><a class="nav-link" href="../ejercicios/listaPersonas.php">Ejercicio 5 (Lista Personas)</a></li>
+                      <li><a class="nav-link" href="../ejercicios/nuevaPersona.php">Ejercicio 6 (Nueva Persona)</a></li>
+                      <li><a class="nav-link" href="../ejercicios/nuevoAuto.php">Ejercicio 7 (Nuevo Auto)</a></li>
+                      <li><a class="nav-link" href="../ejercicios/cambioDuenio.php">Ejercicio 8 (Cambio Dueño)</a></li>
+                      <li><a class="nav-link" href="../ejercicios/buscarPersona.php">Ejercicio 9 (Buscar Persona)</a></li>
                     </ul>
                   </li>
                 </ul>
