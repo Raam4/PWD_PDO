@@ -92,7 +92,7 @@ class Auto{
     public function modificar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="UPDATE auto SET marca='".$this->getMarca()."', modelo='".$this->getModelo()."', dniDuenio='".$this->getDniDuenio()."' WHERE patente=".$this->getPatente();
+        $sql="UPDATE auto SET marca='".$this->getMarca()."', modelo='".$this->getModelo()."', dniDuenio='".$this->getDniDuenio()."' WHERE patente='".$this->getPatente()."'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;

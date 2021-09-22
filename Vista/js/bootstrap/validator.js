@@ -81,7 +81,8 @@ $('#datapers').bootstrapValidator({
                     message: 'El DNI es muy largo.'
                 },
                 greaterThan: {
-                    value: 1
+                    value: 1,
+                    message: 'El DNI no puede empezar con 0.'
                 },
             }
         },
@@ -142,3 +143,50 @@ $('#datapers').bootstrapValidator({
         .filter('[data-bv-validator="' + data.validator + '"]').show();
 });
 
+$('#cambioDuenio').bootstrapValidator({
+    message: 'Este valor no es valido',
+    feedbackIcons: {
+        valid: 'fa fa-check',
+        invalid: 'fa fa-exclamation',
+        validating: 'fa fa-circle'
+    },
+    fields: {
+        patente: {
+            message : 'Ingrese la patente',
+            validators: {
+                notEmpty: {},
+                stringLength: {
+                    min: 7,
+                    max: 7,
+                    message: 'El formato de patente ingresado no es válido'
+                },
+                regexp: {
+                    regexp: /^[a-zA-Z0-9 ]+$/,
+                    message: 'El formato de patente ingresado no es válido'
+                },
+            }
+        },
+        nroDni: {
+            message: 'Ingrese el nro de DNI',
+            validators: {
+                notEmpty: {
+                    message: 'Este campo no puede estar vacío'
+                },
+                stringLength: {
+                    max: 10,
+                    message: 'El DNI es muy largo.'
+                },
+                greaterThan: {
+                    value: 1,
+                    message: 'El DNI no puede empezar con 0.'
+                },
+            }
+        }
+    }
+})
+.on('error.validator.bv', function(e, data) {
+    data.element
+        .data('bv.messages')
+        .find('.help-block[data-bv-for="' + data.field + '"]').hide()
+        .filter('[data-bv-validator="' + data.validator + '"]').show();
+});
