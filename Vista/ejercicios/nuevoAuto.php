@@ -2,40 +2,14 @@
 $Titulo = "Ejercicio 7";
 include_once("../../vista/estructura/header.php");
 ?>
-<script type="text/javascript">
-    function doThis(dni){
-        var param = {"dniDuenio" : dni};
-        $.ajax({
-            data: param,
-            url: 'verificaDni.php',
-            type: 'POST',
-            dataType: 'json',
-            success: function(response) {
-                if(!response.noexiste){
-                    alert(response.existe);
-                    document.getElementById('submit').disabled=false;
-                    document.getElementById('carga').style.visibility = 'hidden';
-                }else{
-                    alert(response.noexiste);
-                    document.getElementById('submit').disabled=true;
-                    document.getElementById('carga').style.visibility = 'visible';
-                }
-            }
-        });
-    };
-    $(document).ready(function(){
-	    $("#dniDuenio").change(function(){
-            document.getElementById('submit').disabled=true;
-	    });
-    });
-</script>
+<script src="../js/verificaDni.js"></script>
 <div class="container">
     <div class="row">
         <div class="col-sm-6">
             <div class="card border rounded shadow pt-1">
                 <form class="ms-2 mb-3 needs-validation" id="datacar" name="datacar" method="POST" action="accionNuevoAuto.php" novalidate>
                     <p class="fw-bold">Ingrese los datos del nuevo auto a cargar:</p>
-                    <p>Debe verificar si el DNI de la persona está cargado, caso contrario debe cargarlo.</p>
+                    <p>Debe verificar si el DNI de la persona está cargado, caso contrario debe cargar los datos de la misma.</p>
                     <div class="row pe-2 mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
