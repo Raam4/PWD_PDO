@@ -1,13 +1,19 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/PWD_PDO/configuracion.php');
 include_once($ROOT."Modelo/Persona.php");
+include_once($ROOT."Modelo/Auto.php");
 class AbmPersona{
 
     private function cargarObjeto($param){
         $obj = null;
         if(array_key_exists('nroDni',$param) and array_key_exists('apellido',$param) and array_key_exists('nombre',$param) and array_key_exists('fechaNac',$param) and array_key_exists('telefono',$param) and array_key_exists('domicilio',$param)){
             $obj = new Persona();
-            $obj->setear($param['nroDni'], $param['apellido'], $param['nombre'], $param['fechaNac'], $param['telefono'], $param['domicilio']);
+            $objAuto = new Auto();
+            $param['colObjAuto'] = $objAuto::listar("dniDuenio = ".$param['nroDni']);
+            if(count($param['colObjAuto'])!=0){
+                $param['colObjAuto'] = $param['colObjAuto'][0];
+            }
+            $obj->setear($param['nroDni'], $param['apellido'], $param['nombre'], $param['fechaNac'], $param['telefono'], $param['domicilio'], $param['colObjAuto']);
         }
         return $obj;
     }
@@ -16,7 +22,7 @@ class AbmPersona{
         $obj = null;
         if( isset($param['nroDni']) ){
             $obj = new Persona();
-            $obj->setear($param['nroDni'], null, null, null, null, null);
+            $obj->setear($param['nroDni'], null, null, null, null, null, null);
         }
         return $obj;
     }
@@ -89,7 +95,8 @@ class AbmPersona{
                 'nombre' => $obj->getNombre(),
                 'fechaNac' => $obj->getFechaNac(),
                 'telefono' => $obj->getTelefono(),
-                'domicilio' => $obj->getDomicilio()
+                'domicilio' => $obj->getDomicilio(),
+                'colObjAuto' => $obj->getColObjAuto()
             ];
             array_push($result, $arr);
         }

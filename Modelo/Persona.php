@@ -1,6 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/PWD_PDO/configuracion.php');
 include_once($ROOT."Modelo/conector/BaseDatos.php");
+include_once($ROOT."Modelo/Auto.php");
 class Persona{
     private $nrodni;
     private $apellido;
@@ -8,6 +9,7 @@ class Persona{
     private $fechaNac;
     private $telefono;
     private $domicilio;
+    private $colObjAuto;
     private $op;
 
     public function __construct(){
@@ -17,16 +19,18 @@ class Persona{
         $this->fechaNac = "";
         $this->telefono = "";
         $this->domicilio = "";
+        $this->colObjAuto = "";
         $this->op = "";
     }
 
-    public function setear($nrodni, $apellido, $nombre, $fechaNac, $telefono, $domicilio){
+    public function setear($nrodni, $apellido, $nombre, $fechaNac, $telefono, $domicilio, $colObjAuto){
         $this->setNroDni($nrodni);
         $this->setApellido($apellido);
         $this->setNombre($nombre);
         $this->setFechaNac($fechaNac);
         $this->setTelefono($telefono);
         $this->setDomicilio($domicilio);
+        $this->setColObjAuto($colObjAuto);
     }
 
     public function getNroDni(){
@@ -65,6 +69,12 @@ class Persona{
     public function setDomicilio($domicilio){
         $this->domicilio = $domicilio;
     }
+    public function getColObjAuto(){
+        return $this->colObjAuto;
+    }
+    public function setColObjAuto($colObjAuto){
+        $this->colObjAuto = $colObjAuto;
+    }
     public function getOp(){
         return $this->op;
     }
@@ -82,7 +92,12 @@ class Persona{
             if($res>-1){
                 if($res>0){
                     $row = $base->Registro();
-                    $this->setear($row['nroDni'], $row['apellido'], $row['nombre'], $row['fechaNac'], $row['telefono'], $row['domicilio']);
+                    $objAuto = new Auto();
+                    $row['colObjAuto'] = $objAuto::listar("dniDuenio = ".$row['nroDni']);
+                    if(count($row['colObjAuto'])!=0){
+                        $row['colObjAuto'] = $row['colObjAuto'][0];
+                    }
+                    $this->setear($row['nroDni'], $row['apellido'], $row['nombre'], $row['fechaNac'], $row['telefono'], $row['domicilio'], $row['colObjAuto']);
                 }
             }
         } else {
@@ -154,8 +169,13 @@ class Persona{
             if($res>0){
                 
                 while ($row = $base->Registro()){
+                    $objAuto = new Auto();
+                    $row['colObjAuto'] = $objAuto::listar("dniDuenio = ".$row['nroDni']);
+                    if(count($row['colObjAuto'])!=0){
+                        $row['colObjAuto'] = $row['colObjAuto'][0];
+                    }
                     $obj= new persona();
-                    $obj->setear($row['nroDni'], $row['apellido'], $row['nombre'], $row['fechaNac'], $row['telefono'], $row['domicilio']);
+                    $obj->setear($row['nroDni'], $row['apellido'], $row['nombre'], $row['fechaNac'], $row['telefono'], $row['domicilio'], $row['colObjAuto']);
                     array_push($arreglo, $obj);
                 }
                
