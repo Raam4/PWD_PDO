@@ -22,7 +22,7 @@ function verEstructura($e){
     echo "</pre>"; 
 }
 
-function __slp_autoload_register($class_name){
+spl_autoload_register(function($class_name){
     //echo "class ".$class_name ;
     $directorys = array(
         $_SESSION['ROOT'].'Modelo/',
@@ -38,6 +38,5 @@ function __slp_autoload_register($class_name){
             return;
         }
     }
-}
-
+});
 ?>

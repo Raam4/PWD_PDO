@@ -1,8 +1,7 @@
 <?php 
 $Titulo = "Ejercicio 5";
 include_once("../../vista/estructura/header.php");
-include_once("../../Control/AbmAuto.php");
-include_once("../../Control/AbmPersona.php");
+include_once("../../configuracion.php");
 $objAbmAuto = new AbmAuto();
 $objAbmPersona = new AbmPersona();
 $data = data_submitted();

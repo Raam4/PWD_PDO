@@ -1,7 +1,7 @@
 <?php 
 $Titulo = "Ejercicio 5";
 include_once("../../vista/estructura/header.php");
-include_once("../../Control/AbmPersona.php");
+include_once("../../configuracion.php");
 $objAbmPersona = new AbmPersona();
 $personas = $objAbmPersona->buscar(null);
 ?>

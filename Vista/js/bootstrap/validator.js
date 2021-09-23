@@ -16,7 +16,7 @@ $('#buscarAuto').bootstrapValidator({
                     message: 'El formato de patente ingresado no es válido'
                 },
                 regexp: {
-                    regexp: /^[a-zA-Z0-9 ]+$/,
+                    regexp: /^([A-Z]{3} [0-9]{3})$/,
                     message: 'El formato de patente ingresado no es válido'
                 },
             }

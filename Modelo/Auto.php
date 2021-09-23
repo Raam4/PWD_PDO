@@ -1,6 +1,4 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'].'/PWD_PDO/configuracion.php');
-include_once(CONECTOR_PATH."BaseDatos.php");
 class Auto{
     private $patente;
     private $marca;
