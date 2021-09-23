@@ -1,7 +1,7 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'/PWD_PDO/configuracion.php');
-include_once($ROOT."Modelo/Persona.php");
-include_once($ROOT."Modelo/Auto.php");
+include_once(MODEL_PATH."Persona.php");
+include_once(MODEL_PATH."Auto.php");
 class AbmPersona{
 
     private function cargarObjeto($param){
