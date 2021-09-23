@@ -2,7 +2,7 @@ function doThis(dni){
     var param = {"dniDuenio" : dni};
     $.ajax({
         data: param,
-        url: 'verificaDni.php',
+        url: '../../utiles/verificaDni.php',
         type: 'POST',
         dataType: 'json',
         success: function(response) {
