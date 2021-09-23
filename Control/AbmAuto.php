@@ -5,7 +5,9 @@ class AbmAuto{
         $obj = null;
         if(array_key_exists('patente',$param) and array_key_exists('marca',$param) and array_key_exists('modelo',$param) and array_key_exists('dniDuenio',$param)){
             $obj = new Auto();
-            $obj->setear($param['patente'], $param['marca'], $param['modelo'], $param['dniDuenio']);
+            $objPersona = new Persona();
+            $objPersona::listar($param['dniDuenio'], true);
+            $obj->setear($param['patente'], $param['marca'], $param['modelo'], $objPersona[0]);
         }
         return $obj;
     }
@@ -81,7 +83,7 @@ class AbmAuto{
                 'patente' => $obj->getPatente(),
                 'marca' => $obj->getMarca(),
                 'modelo' => $obj->getModelo(),
-                'dniDuenio' => $obj->getDniDuenio()
+                'dniDuenio' => ($obj->getObjDuenio()->getNroDni())
             ];
             array_push($result, $arr);
         }

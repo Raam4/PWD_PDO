@@ -3,22 +3,22 @@ class Auto{
     private $patente;
     private $marca;
     private $modelo;
-    private $dniDuenio;
+    private $objDuenio;
     private $op;
 
     public function __construct(){
         $this->patente = "";
         $this->marca = "";
         $this->modelo = "";
-        $this->dniDuenio = "";
+        $this->objDuenio = "";
         $this->op = "";
     }
 
-    public function setear($patente, $marca, $modelo, $dniDuenio){
+    public function setear($patente, $marca, $modelo, $objDuenio){
         $this->setPatente($patente);
         $this->setMarca($marca);
         $this->setModelo($modelo);
-        $this->setDniDuenio($dniDuenio);
+        $this->setObjDuenio($objDuenio);
     }
 
     public function getPatente(){
@@ -39,11 +39,11 @@ class Auto{
     public function setModelo($modelo){
         $this->modelo = $modelo;
     }
-    public function getDniDuenio(){
-        return $this->dniDuenio;
+    public function getObjDuenio(){
+        return $this->objDuenio;
     }
-    public function setDniDuenio($dniDuenio){
-        $this->dniDuenio = $dniDuenio;
+    public function setObjDuenio($objDuenio){
+        $this->objDuenio = $objDuenio;
     }
     public function getOp(){
         return $this->op;
@@ -73,7 +73,8 @@ class Auto{
     public function insertar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="INSERT INTO auto(patente, marca, modelo, dniDuenio) VALUES('".$this->getPatente()."', '".$this->getMarca()."', '".$this->getModelo()."', '".$this->getDniDuenio()."');";
+        $dniDuenio = $this->getObjDuenio()['nroDni'];
+        $sql="INSERT INTO auto(patente, marca, modelo, dniDuenio) VALUES('".$this->getPatente()."', '".$this->getMarca()."', '".$this->getModelo()."', '".$dniDuenio."');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
                 $this->setPatente($elid);
@@ -90,7 +91,8 @@ class Auto{
     public function modificar(){
         $resp = false;
         $base=new BaseDatos();
-        $sql="UPDATE auto SET marca='".$this->getMarca()."', modelo='".$this->getModelo()."', dniDuenio='".$this->getDniDuenio()."' WHERE patente='".$this->getPatente()."'";
+        $dniDuenio = $this->getObjDuenio()['nroDni'];
+        $sql="UPDATE auto SET marca='".$this->getMarca()."', modelo='".$this->getModelo()."', dniDuenio='".$dniDuenio."' WHERE patente='".$this->getPatente()."'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
                 $resp = true;
@@ -131,7 +133,9 @@ class Auto{
             if($res>0){
                 while ($row = $base->Registro()){
                     $obj= new Auto();
-                    $obj->setear($row['patente'], $row['marca'], $row['modelo'], $row['dniDuenio']);
+                    $objPersona = new Persona();
+                    $objPersona = $objPersona::listar("nroDni = ".$row['dniDuenio'], false);
+                    $obj->setear($row['patente'], $row['marca'], $row['modelo'], $objPersona[0]);
                     array_push($arreglo, $obj);
                 }
             }

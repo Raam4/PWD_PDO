@@ -78,7 +78,7 @@ class AbmPersona{
             if  (isset($param['domicilio']))
                 $where.=" and domicilio ='".$param['domicilio']."'";
         }
-        $arreglo = Persona::listar($where);
+        $arreglo = Persona::listar($where, true);
         $arreglo = $this->objToArr($arreglo);
         return $arreglo;
     }

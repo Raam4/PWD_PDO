@@ -154,7 +154,7 @@ class Persona{
         return $resp;
     }
     
-    public static function listar($parametro=""){
+    public static function listar($parametro="", $cond){
         $arreglo = array();
         $base=new BaseDatos();
         $sql="SELECT * FROM persona ";
@@ -167,9 +167,13 @@ class Persona{
                 
                 while ($row = $base->Registro()){
                     $objAuto = new Auto();
-                    $row['colObjAuto'] = $objAuto::listar("dniDuenio = ".$row['nroDni']);
-                    if(count($row['colObjAuto'])!=0){
-                        $row['colObjAuto'] = $row['colObjAuto'][0];
+                    if($cond){
+                        $row['colObjAuto'] = $objAuto::listar("dniDuenio = ".$row['nroDni']);
+                        if(count($row['colObjAuto'])!=0){
+                            $row['colObjAuto'] = $row['colObjAuto'][0];
+                        }
+                    }else{
+                        $row['colObjAuto'] = null;
                     }
                     $obj= new persona();
                     $obj->setear($row['nroDni'], $row['apellido'], $row['nombre'], $row['fechaNac'], $row['telefono'], $row['domicilio'], $row['colObjAuto']);
