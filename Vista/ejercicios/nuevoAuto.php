@@ -45,9 +45,9 @@ include_once("../../vista/estructura/header.php");
                     <div class="row pe-2 mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" type="number" min="1980" max="2021" id="modelo" name="modelo" placeholder="Modelo" required>
+                                <input class="form-control" type="number" min="1920" max="2021" id="modelo" name="modelo" placeholder="Modelo" required>
                                 <div class="invalid-feedback">
-                                    Desde 1980 a 2021.
+                                    Desde 1920 a 2021.
                                 </div>
                             </div>
                         </div>

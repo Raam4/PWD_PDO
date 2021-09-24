@@ -2,7 +2,7 @@
 include_once("../configuracion.php");
 $objAbmPersona = new AbmPersona();
 $data = data_submitted();
-$data = ['nroDni'=>$data['dniDunio']];
+$data = ['nroDni'=>$data['dniDuenio']];
 $arrayPersona = $objAbmPersona->buscar($data);
 $arrayResult = array();
 if(count($arrayPersona)!=0){
