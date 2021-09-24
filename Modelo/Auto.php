@@ -61,7 +61,9 @@ class Auto{
             if($res>-1){
                 if($res>0){
                     $row = $base->Registro();
-                    $this->setear($row['patente'], $row['marca'], $row['modelo'], $row['dniDuenio']);
+                    $objPersona = new Persona();
+                    $row['dniDuenio'] = $objPersona::listar("nroDni =".$row['dniDuenio']);
+                    $this->setear($row['patente'], $row['marca'], $row['modelo'], $row['dniDuenio'][0]);
                 }
             }
         } else {
