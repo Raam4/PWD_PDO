@@ -59,7 +59,7 @@ function goToAccion(){
                     <div class="row pe-2 mt-3">
                         <div class="col-md-8">
                             <div class="form-group">
-                                <input class="form-control" type="text" id="domicilio" name="domicilio" maxlength="100" pattern="^([A-Za-z0-9]+)$" placeholder="Domicilio" required>
+                                <input class="form-control" type="text" id="domicilio" name="domicilio" maxlength="100" pattern="^([A-Za-z0-9 ]+)$" placeholder="Domicilio" required>
                             </div>
                         </div>
                     </div>
