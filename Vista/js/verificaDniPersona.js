@@ -1,5 +1,5 @@
 function doThis(dni){
-    var param = {"dniDuenio" : dni};
+    var param = {"nroDni" : dni};
     $.ajax({
         data: param,
         url: '../../utiles/verificaDni.php',

@@ -13,12 +13,12 @@ include_once("../../vista/estructura/header.php");
                     <div class="row pe-2 mt-3">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" type="text" id="dniDuenio" name="dniDuenio" placeholder="DNI del dueño" required>
+                                <input class="form-control" type="text" id="dni" name="dniDuenio" placeholder="DNI del dueño" required>
                             </div>
                         </div>
                         <div class="col-md-2 pt-1">
                             <div class="form-group">
-                                <button class="btn btn-sm btn-primary" type="button" onclick="doThis($('#dniDuenio').val())">Verificar</button>
+                                <button class="btn btn-sm btn-primary" type="button" onclick="doThis($('#dni').val())">Verificar</button>
                             </div>
                         </div>
                         <div class="col-md-4 pt-1" id="carga" style="visibility:hidden">
@@ -38,7 +38,7 @@ include_once("../../vista/estructura/header.php");
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input class="form-control" type="text" id="marca" name="marca" pattern="^([a-zA-Z ]{0,50})$" placeholder="Marca" required>
+                                <input class="form-control" type="text" id="marca" name="marca" maxlength="50" pattern="^([a-zA-Z ]+)$" placeholder="Marca" required>
                             </div>
                         </div>
                     </div>
