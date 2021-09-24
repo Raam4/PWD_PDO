@@ -65,7 +65,7 @@
               <nav class="sidebar card py-2 mb-4">
                 <ul class="nav flex-column" id="nav_accordion">
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Inicio</a>
+                    <a class="nav-link" href="../Inicio/index.php">Inicio</a>
                   </li>
                   <li class="nav-item has-submenu">
                     <a class="nav-link" href="#">Ejercicios<i class="fas fa-caret-down"></i> </a>
