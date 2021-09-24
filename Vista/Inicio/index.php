@@ -4,8 +4,8 @@ include_once("../estructura/header.php"); ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-7">
-            <div class="card border rounded shadow fw-bold p-5 pt-4 ">
-                <h3 class="text mb-4">Trabajos Prácticos 4 - PWD</h3>
+            <div class="card border rounded shadow fw-bold p-4">
+                <h3 class="text mb-4">Trabajo Práctico 4 - PWD</h3>
                 <h5>Integrantes:</h5>
                 <p class="lead">
                 - Ramiro Cardozo  FAI-1729  <br>
