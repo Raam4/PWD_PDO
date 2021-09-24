@@ -4,7 +4,7 @@ $objAbmPersona = new AbmPersona();
 $data = data_submitted();
 $data = ['nroDni'=>$data['dniDuenio']];
 $arrayPersona = $objAbmPersona->buscar($data);
-$arrayResult = false;
+$arrayResult = array();
 if(count($arrayPersona)!=0){
     $arrayResult['existe'] = "La persona con el dni cargado existe";
 }else{

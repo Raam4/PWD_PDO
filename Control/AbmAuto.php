@@ -6,7 +6,7 @@ class AbmAuto{
         if(array_key_exists('patente',$param) and array_key_exists('marca',$param) and array_key_exists('modelo',$param) and array_key_exists('dniDuenio',$param)){
             $obj = new Auto();
             $objPersona = new Persona();
-            $objPersona::listar($param['dniDuenio'], true);
+            $objPersona = $objPersona::listar("nroDni = ".$param['dniDuenio'], true);
             $obj->setear($param['patente'], $param['marca'], $param['modelo'], $objPersona[0]);
         }
         return $obj;

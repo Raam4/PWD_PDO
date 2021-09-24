@@ -73,7 +73,7 @@ class Auto{
     public function insertar(){
         $resp = false;
         $base=new BaseDatos();
-        $dniDuenio = $this->getObjDuenio()['nroDni'];
+        $dniDuenio = $this->getObjDuenio()->getNroDni();
         $sql="INSERT INTO auto(patente, marca, modelo, dniDuenio) VALUES('".$this->getPatente()."', '".$this->getMarca()."', '".$this->getModelo()."', '".$dniDuenio."');";
         if ($base->Iniciar()) {
             if ($elid = $base->Ejecutar($sql)) {
@@ -91,7 +91,7 @@ class Auto{
     public function modificar(){
         $resp = false;
         $base=new BaseDatos();
-        $dniDuenio = $this->getObjDuenio()['nroDni'];
+        $dniDuenio = $this->getObjDuenio()->getNroDni();
         $sql="UPDATE auto SET marca='".$this->getMarca()."', modelo='".$this->getModelo()."', dniDuenio='".$dniDuenio."' WHERE patente='".$this->getPatente()."'";
         if ($base->Iniciar()) {
             if ($base->Ejecutar($sql)) {
