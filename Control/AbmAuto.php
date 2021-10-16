@@ -1,38 +1,19 @@
 <?php
 class AbmAuto{
-
-    private function cargarObjeto($param){
-        $obj = null;
-        if(array_key_exists('patente',$param) and array_key_exists('marca',$param) and array_key_exists('modelo',$param) and array_key_exists('dniDuenio',$param)){
-            $obj = new Auto();
-            $objPersona = new Persona();
-            $objPersona = $objPersona::listar("nroDni = ".$param['dniDuenio'], true);
-            $obj->setear($param['patente'], $param['marca'], $param['modelo'], $objPersona[0]);
-        }
-        return $obj;
-    }
-    
-    private function cargarObjetoConClave($param){
-        $obj = null;
-        if( isset($param['patente']) ){
-            $obj = new Auto();
-            $obj->setear($param['patente'], null, null, null);
-        }
-        return $obj;
-    }
     
     private function seteadosCamposClaves($param){
-        $resp = false;
-        if (isset($param['patente']))
-            $resp = true;
-        return $resp;
+        return isset($param['patente']);
     }
 
     public function alta($param){
         $resp = false;
-        $elObjtAuto = $this->cargarObjeto($param);
-        if ($elObjtAuto!=null and $elObjtAuto->insertar()){
-            $resp = true;
+        if ($this->seteadosCamposClaves($param)){
+            $DB = new DB();
+            $objAuto = $DB::for_table('auto')->create();
+            $objAuto->set($param);
+            if($objAuto->save()){
+                $resp = true;
+            }
         }
         return $resp;
     }
@@ -40,8 +21,9 @@ class AbmAuto{
     public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $elObjtAuto = $this->cargarObjetoConClave($param);
-            if ($elObjtAuto!=null and $elObjtAuto->eliminar()){
+            $DB = new DB();
+            $objAuto = $DB::for_table('auto')->where($param['patente'])->find_one();
+            if($objAuto->delete()){
                 $resp = true;
             }
         }
@@ -51,8 +33,10 @@ class AbmAuto{
     public function modificacion($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $elObjtAuto = $this->cargarObjeto($param);
-            if($elObjtAuto!=null and $elObjtAuto->modificar()){
+            $DB = new DB();
+            $objAuto = $DB::for_table('auto')->where('patente', $param['patente'])->find_one();
+            $objAuto->set($param);
+            if($objAuto->save()){
                 $resp = true;
             }
         }
@@ -60,30 +44,19 @@ class AbmAuto{
     }
     
     public function buscar($param){
-        $where = " true ";
-        if ($param<>NULL){
-            if  (isset($param['patente']))
-                $where.=" and patente ='".$param['patente']."'";
-            if  (isset($param['marca']))
-                 $where.=" and marca ='".$param['marca']."'";
-            if  (isset($param['modelo']))
-                $where.=" and modelo ='".$param['modelo']."'";
-            if  (isset($param['dniDuenio']))
-                $where.=" and dniDuenio ='".$param['dniDuenio']."'";
-        }
-        $arreglo = Auto::listar($where);
-        $arreglo = $this->objToArr($arreglo);
-        return $arreglo;
-    }
-    
-    public function objToArr($arrOfObj){
         $result = array();
-        foreach($arrOfObj as $obj){
+        $DB = new DB();
+        if(!$param){
+            $objAuto = $DB::for_table('auto')->find_result_set();
+        }else{
+            $objAuto = $DB::for_table('auto')->where($param)->find_result_set();
+        }
+        foreach($objAuto as $obj){
             $arr = [
-                'patente' => $obj->getPatente(),
-                'marca' => $obj->getMarca(),
-                'modelo' => $obj->getModelo(),
-                'dniDuenio' => ($obj->getObjDuenio()->getNroDni())
+                'patente' => $obj->patente,
+                'marca' => $obj->marca,
+                'modelo' => $obj->modelo,
+                'dniDuenio' => $obj->dniDuenio
             ];
             array_push($result, $arr);
         }

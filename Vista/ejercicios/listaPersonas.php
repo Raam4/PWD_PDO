@@ -3,7 +3,7 @@ $Titulo = "Ejercicio 5";
 include_once("../../vista/estructura/header.php");
 include_once("../../configuracion.php");
 $objAbmPersona = new AbmPersona();
-$personas = $objAbmPersona->buscar(null);
+$personas = $objAbmPersona->buscar(array());
 ?>
 <div class="container-fluid">
     <div class="row">

@@ -11,8 +11,8 @@ $data = data_submitted();
         <div class="col-sm-6">
             <div class="card border rounded shadow px-2 py-3 mb-4">
                 <?php
-                    $objAuto = $objAbmAuto->buscar($data);
-                    $objPersona = $objAbmPersona->buscar($data);
+                    $objAuto = $objAbmAuto->buscar(array('patente' => $data['patente']));
+                    $objPersona = $objAbmPersona->buscar(array('nroDni' => $data['nroDni']));
                     if(count($objAuto)!=0 and count($objPersona)!=0){
                         $objAuto[0]['dniDuenio'] = $data['nroDni'];
                         if($objAbmAuto->modificacion($objAuto[0])){

@@ -25,10 +25,10 @@ function verEstructura($e){
 spl_autoload_register(function($class_name){
     //echo "class ".$class_name ;
     $directorys = array(
-        $_SESSION['ROOT'].'Modelo/',
-        $_SESSION['ROOT'].'Modelo/conector/',
-        $_SESSION['ROOT'].'Control/',
-      //  $GLOBALS['ROOT'].'util/class/',
+        $GLOBALS['ROOT'].'Modelo/',
+        $GLOBALS['ROOT'].'Modelo/conector/',
+        $GLOBALS['ROOT'].'Control/',
+        //$GLOBALS['ROOT'].'utiles/',
     );
     //print_object($directorys) ;
     foreach($directorys as $directory){
