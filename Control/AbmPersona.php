@@ -8,9 +8,9 @@ class AbmPersona{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $DB = new DB();
-            $objPersona = $DB::for_table('persona')->create();
-            $objPersona->set($param);
-            if($objPersona->save()){
+            $persona = $DB::factory('Persona')->create();
+            $persona->set($param);
+            if($persona->save()){
                 $resp = true;
             }
         }
@@ -21,8 +21,8 @@ class AbmPersona{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $DB = new DB();
-            $objPersona = $DB::for_table('persona')->where($param['nroDni'])->find_one();
-            if($objPersona->delete()){
+            $persona = $DB::factory('Persona')->find_one($param['nroDni']);
+            if($persona->delete()){
                 $resp = true;
             }
         }
@@ -33,9 +33,9 @@ class AbmPersona{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $DB = new DB();
-            $objPersona = $DB::for_table('persona')->where('nroDni', $param['nroDni'])->find_one();
-            $objPersona->set($param);
-            if($objPersona->save()){
+            $persona = $DB::factory('Persona')->find_one($param['nroDni']);
+            $persona->set($param);
+            if($persona->save()){
                 $resp = true;
             }
         }
@@ -46,19 +46,12 @@ class AbmPersona{
         $result = array();
         $DB = new DB();
         if(!$param){
-            $objPersona = $DB::for_table('persona')->find_result_set();
+            $personas = $DB::factory('Persona')->find_result_set();
         }else{
-            $objPersona = $DB::for_table('persona')->where($param)->find_result_set();
+            $personas = $DB::factory('Persona')->where($param)->find_result_set();
         }
-        foreach($objPersona as $obj){
-            $arr = [
-                'nroDni' => $obj->nroDni,
-                'apellido' => $obj->apellido,
-                'nombre' => $obj->nombre,
-                'fechaNac' => $obj->fechaNac,
-                'telefono' => $obj->telefono,
-                'domicilio' => $obj->domicilio
-            ];
+        foreach($personas as $obj){
+            $arr = $obj->as_array();
             array_push($result, $arr);
         }
         return $result;

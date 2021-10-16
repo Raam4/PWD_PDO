@@ -1,6 +1,5 @@
 <?php
 class AbmAuto{
-    
     private function seteadosCamposClaves($param){
         return isset($param['patente']);
     }
@@ -9,9 +8,9 @@ class AbmAuto{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $DB = new DB();
-            $objAuto = $DB::for_table('auto')->create();
-            $objAuto->set($param);
-            if($objAuto->save()){
+            $auto = $DB::factory('Auto')->create();
+            $auto->set($param);
+            if($auto->save()){
                 $resp = true;
             }
         }
@@ -22,8 +21,8 @@ class AbmAuto{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $DB = new DB();
-            $objAuto = $DB::for_table('auto')->where($param['patente'])->find_one();
-            if($objAuto->delete()){
+            $auto = $DB::factory('Auto')->find_one($param['patente']);
+            if($auto->delete()){
                 $resp = true;
             }
         }
@@ -34,9 +33,9 @@ class AbmAuto{
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
             $DB = new DB();
-            $objAuto = $DB::for_table('auto')->where('patente', $param['patente'])->find_one();
-            $objAuto->set($param);
-            if($objAuto->save()){
+            $auto = $DB::factory('Auto')->find_one($param['patente']);
+            $auto->set($param);
+            if($auto->save()){
                 $resp = true;
             }
         }
@@ -47,17 +46,12 @@ class AbmAuto{
         $result = array();
         $DB = new DB();
         if(!$param){
-            $objAuto = $DB::for_table('auto')->find_result_set();
+            $autos = $DB::factory('Auto')->find_result_set();
         }else{
-            $objAuto = $DB::for_table('auto')->where($param)->find_result_set();
+            $autos = $DB::factory('Auto')->where($param)->find_result_set();
         }
-        foreach($objAuto as $obj){
-            $arr = [
-                'patente' => $obj->patente,
-                'marca' => $obj->marca,
-                'modelo' => $obj->modelo,
-                'dniDuenio' => $obj->dniDuenio
-            ];
+        foreach($autos as $obj){
+            $arr = $obj->as_array();
             array_push($result, $arr);
         }
         return $result;

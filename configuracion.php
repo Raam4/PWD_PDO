@@ -8,7 +8,7 @@
 $PROYECTO ='PWD_PDO';
 
 //variable que almacena el directorio del proyecto
-$ROOT =$_SERVER['DOCUMENT_ROOT']."/$PROYECTO/";
+$ROOT = $_SERVER['DOCUMENT_ROOT']."/$PROYECTO/";
 
 include_once($ROOT.'utiles/funciones.php');
 
@@ -21,5 +21,7 @@ $PRINCIPAL = "Location:http://".$_SERVER['HTTP_HOST']."/$PROYECTO/principal.php"
 
 
 $_SESSION['ROOT']=$ROOT;
+
+
 
 ?>
