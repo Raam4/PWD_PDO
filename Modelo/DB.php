@@ -9,10 +9,6 @@ class DB extends Model{
             'password' => '',
             'return_result_sets' => true,
             'driver_options' => array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'),
-            'id_column_overrides' => array(
-                'persona' => 'nroDni',
-                'auto' => 'patente'
-            ),
             'logging' => true
         ));
     }
