@@ -51,15 +51,7 @@ class AbmPersona{
             $objPersona = $DB::for_table('persona')->where($param)->find_result_set();
         }
         foreach($objPersona as $obj){
-            $arr = [
-                'nroDni' => $obj->nroDni,
-                'apellido' => $obj->apellido,
-                'nombre' => $obj->nombre,
-                'fechaNac' => $obj->fechaNac,
-                'telefono' => $obj->telefono,
-                'domicilio' => $obj->domicilio
-            ];
-            array_push($result, $arr);
+            array_push($result, $obj->as_array());
         }
         return $result;
     }
