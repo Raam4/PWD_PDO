@@ -13,9 +13,5 @@ class Persona extends Model{
     public function autos(){
         return $this->has_many('Persona', 'nroDni', 'dniDuenio');
     }
-
-    public function props($orm){
-        return $this->$orm->autos()->find_many();
-    }
 }
 ?>
