@@ -52,13 +52,7 @@ class AbmAuto{
             $objAuto = $DB::for_table('auto')->where($param)->find_result_set();
         }
         foreach($objAuto as $obj){
-            $arr = [
-                'patente' => $obj->patente,
-                'marca' => $obj->marca,
-                'modelo' => $obj->modelo,
-                'dniDuenio' => $obj->dniDuenio
-            ];
-            array_push($result, $arr);
+            array_push($result, $obj->as_array());
         }
         return $result;
     }
