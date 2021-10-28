@@ -1,6 +1,4 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT']."/PWD_PDO/utiles/idiorm.php";
-include_once $_SERVER['DOCUMENT_ROOT']."/PWD_PDO/utiles/paris.php";
 class DB extends Model{
     public function __construct(){
         ORM::configure(array(
