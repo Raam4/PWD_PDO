@@ -28,7 +28,7 @@ spl_autoload_register(function($class_name){
         $GLOBALS['ROOT'].'Modelo/',
         $GLOBALS['ROOT'].'Modelo/conector/',
         $GLOBALS['ROOT'].'Control/',
-        //$GLOBALS['ROOT'].'utiles/',
+        $GLOBALS['ROOT'].'utiles/',
     );
     //print_object($directorys) ;
     foreach($directorys as $directory){
