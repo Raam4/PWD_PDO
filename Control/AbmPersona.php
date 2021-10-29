@@ -7,8 +7,8 @@ class AbmPersona{
     public function alta($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $DB = new DB();
-            $persona = $DB::factory('Persona')->create();
+            $modOrm = new ModOrm();
+            $persona = $modOrm::factory('Persona')->create();
             $persona->set($param);
             if($persona->save()){
                 $resp = true;
@@ -20,8 +20,8 @@ class AbmPersona{
     public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $DB = new DB();
-            $persona = $DB::factory('Persona')->find_one($param['nroDni']);
+            $modOrm = new ModOrm();
+            $persona = $modOrm::factory('Persona')->find_one($param['nroDni']);
             if($persona->delete()){
                 $resp = true;
             }
@@ -32,8 +32,8 @@ class AbmPersona{
     public function modificacion($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $DB = new DB();
-            $persona = $DB::factory('Persona')->find_one($param['nroDni']);
+            $modOrm = new ModOrm();
+            $persona = $modOrm::factory('Persona')->find_one($param['nroDni']);
             $persona->set($param);
             if($persona->save()){
                 $resp = true;
@@ -44,11 +44,11 @@ class AbmPersona{
     
     public function buscar($param){
         $result = array();
-        $DB = new DB();
+        $modOrm = new ModOrm();
         if(!$param){
-            $personas = $DB::factory('Persona')->find_result_set();
+            $personas = $modOrm::factory('Persona')->find_result_set();
         }else{
-            $personas = $DB::factory('Persona')->where($param)->find_result_set();
+            $personas = $modOrm::factory('Persona')->where($param)->find_result_set();
         }
         foreach($personas as $obj){
             $arr = $obj->as_array();

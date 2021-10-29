@@ -7,8 +7,8 @@ class AbmAuto{
     public function alta($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $DB = new DB();
-            $auto = $DB::factory('Auto')->create();
+            $modOrm = new ModOrm();
+            $auto = $modOrm::factory('Auto')->create();
             $auto->set($param);
             if($auto->save()){
                 $resp = true;
@@ -20,8 +20,8 @@ class AbmAuto{
     public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $DB = new DB();
-            $auto = $DB::factory('Auto')->find_one($param['patente']);
+            $modOrm = new ModOrm();
+            $auto = $modOrm::factory('Auto')->find_one($param['patente']);
             if($auto->delete()){
                 $resp = true;
             }
@@ -32,8 +32,8 @@ class AbmAuto{
     public function modificacion($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $DB = new DB();
-            $auto = $DB::factory('Auto')->find_one($param['patente']);
+            $modOrm = new ModOrm();
+            $auto = $modOrm::factory('Auto')->find_one($param['patente']);
             $auto->set($param);
             if($auto->save()){
                 $resp = true;
@@ -44,11 +44,11 @@ class AbmAuto{
     
     public function buscar($param){
         $result = array();
-        $DB = new DB();
+        $modOrm = new ModOrm();
         if(!$param){
-            $autos = $DB::factory('Auto')->find_result_set();
+            $autos = $modOrm::factory('Auto')->find_result_set();
         }else{
-            $autos = $DB::factory('Auto')->where($param)->find_result_set();
+            $autos = $modOrm::factory('Auto')->where($param)->find_result_set();
         }
         foreach($autos as $obj){
             $arr = $obj->as_array();
