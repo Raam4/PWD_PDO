@@ -7,8 +7,8 @@ class AbmPersona{
     public function alta($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $DB = new DB();
-            $objPersona = $DB::for_table('persona')->create();
+            $modOrm = new ModOrm();
+            $objPersona = $modOrm::for_table('persona')->create();
             $objPersona->set($param);
             if($objPersona->save()){
                 $resp = true;
@@ -20,8 +20,8 @@ class AbmPersona{
     public function baja($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $DB = new DB();
-            $objPersona = $DB::for_table('persona')->where($param['nroDni'])->find_one();
+            $modOrm = new ModOrm();
+            $objPersona = $modOrm::for_table('persona')->where($param['nroDni'])->find_one();
             if($objPersona->delete()){
                 $resp = true;
             }
@@ -32,8 +32,8 @@ class AbmPersona{
     public function modificacion($param){
         $resp = false;
         if ($this->seteadosCamposClaves($param)){
-            $DB = new DB();
-            $objPersona = $DB::for_table('persona')->where('nroDni', $param['nroDni'])->find_one();
+            $modOrm = new ModOrm();
+            $objPersona = $modOrm::for_table('persona')->where('nroDni', $param['nroDni'])->find_one();
             $objPersona->set($param);
             if($objPersona->save()){
                 $resp = true;
@@ -44,11 +44,11 @@ class AbmPersona{
     
     public function buscar($param){
         $result = array();
-        $DB = new DB();
+        $modOrm = new ModOrm();
         if(!$param){
-            $objPersona = $DB::for_table('persona')->find_result_set();
+            $objPersona = $modOrm::for_table('persona')->find_result_set();
         }else{
-            $objPersona = $DB::for_table('persona')->where($param)->find_result_set();
+            $objPersona = $modOrm::for_table('persona')->where($param)->find_result_set();
         }
         foreach($objPersona as $obj){
             array_push($result, $obj->as_array());
