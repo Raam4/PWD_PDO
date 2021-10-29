@@ -1,5 +1,5 @@
 <?php
-class DB extends ORM{
+class ModOrm extends ORM{
     public function __construct(){
         ORM::configure(array(
             'connection_string' => 'mysql:host=localhost;dbname=infoautos',
